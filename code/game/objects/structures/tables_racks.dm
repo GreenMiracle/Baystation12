@@ -302,6 +302,8 @@
 			return !density
 		else
 			return 1
+	if(locate(/obj/structure/table) in mover.loc)
+		return 1
 	return 0
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
@@ -350,6 +352,16 @@
 	if (O.loc != src.loc)
 		step(O, get_dir(O, src))
 	return
+
+/obj/structure/table/AltClick(var/mob/living/ML)
+	visible_message("<span class='notice'>[user] trying to clumb on the [src].</span>")
+	if(do_mob(user, get_turf(user), 8))
+		if(prob(50))
+			visible_message("<span class='notice'>[user] climbs on the [src].</span>")
+			usr.loc = src.loc
+		else
+			visible_message("<span class='warning'>[user] slipped off the edge of the [src].</span>")
+			usr.weakened += 5
 
 
 /obj/structure/table/attackby(obj/item/W as obj, mob/user as mob)
