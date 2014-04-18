@@ -7,32 +7,17 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 */
 
 /obj/item/device/uplink
-
-	var/welcome 					// Welcoming menu message
-	var/items						// List of items
-	var/valid_items = list()
-	var/item_data					// raw item text
-	var/list/ItemList				// Parsed list of items
-	var/uses 						// Numbers of crystals
-	var/nanoui_items[0]
-	// List of items not to shove in their hands.
+	var/welcome 						// Welcoming menu message
+	var/list/datum/spawn_item/items
+	var/uses 							// Numbers of crystals
+	var/list/nanoui_items
 	var/list/NotInHand = list(/obj/machinery/singularity_beacon/syndicate)
 
 /obj/item/device/uplink/New()
 	welcome = ticker.mode.uplink_welcome
-	if(!item_data)
-		items = replacetext(ticker.mode.uplink_items, "\n", "")	// Getting the text string of items
-	else
-		items = replacetext(item_data)
-	ItemList = text2list(src.items, ";")	// Parsing the items text string
+	items = ticker.mode.uplink_items
 	uses = ticker.mode.uplink_uses
 	nanoui_items = generate_nanoui_items()
-	for(var/D in ItemList)
-		var/list/O = text2list(D, ":")
-		if(O.len>0)
-			valid_items += O[1]		
-
-
 
 /*
 	Built the Items List for use with NanoUI
@@ -40,79 +25,35 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 /obj/item/device/uplink/proc/generate_nanoui_items()
 	var/items_nano[0]
-	for(var/D in ItemList)
-		var/list/O = text2list(D, ":")
-		if(O.len != 3)  //If it is not an actual item, make a break in the menu.
-			if(O.len == 1)  //If there is one item, it's probably a title
-				items_nano[++items_nano.len] = list("Category" = "[O[1]]", "items" = list())
-			continue
+	var/last_category = "no category"
+	for(var/datum/spawn_item/i in items)
+		if(last_category != i.category)
+			items_nano[++items_nano.len] = list("Category" = i.category, "items" = list())
+			last_category = i.category
+		items_nano[items_nano.len]["items"] += list(list("Name" = i.name, "Cost" = i.cost, "obj_path" = i.path, "item_ref" = "\ref[i]"))
 
-		var/path_text = O[1]
-		var/cost = text2num(O[2])
 
-		var/path_obj = text2path(path_text)
-
-		// Because we're using strings, this comes up if item paths change.
-		// Failure to handle this error borks uplinks entirely.  -Sayu
-		if(!path_obj)
-			error("Syndicate item is not a valid path: [path_text]")
-		else
-			var/itemname = O[3]
-			items_nano[items_nano.len]["items"] += list(list("Name" = itemname, "Cost" = cost, "obj_path" = path_text))
-
+//	for(var/D in ItemList)
+//		var/list/O = text2list(D, ":")
+//		if(O.len != 3)  //If it is not an actual item, make a break in the menu.
+//			if(O.len == 1)  //If there is one item, it's probably a title
+//				items_nano[++items_nano.len] = list("Category" = "[O[1]]", "items" = list())
+//			continue
+//
+//		var/path_text = O[1]
+//		var/cost = text2num(O[2])
+//
+//		var/path_obj = text2path(path_text)
+//
+//		// Because we're using strings, this comes up if item paths change.
+//		// Failure to handle this error borks uplinks entirely.  -Sayu
+//		if(!path_obj)
+//			error("Syndicate item is not a valid path: [path_text]")
+//		else
+//			var/itemname = O[3]
+//			items_nano[items_nano.len]["items"] += list(list("Name" = itemname, "Cost" = cost, "obj_path" = path_text))
+//
 	return items_nano
-
-//Let's build a menu!
-/obj/item/device/uplink/proc/generate_menu()
-
-	var/dat = "<B>[src.welcome]</B><BR>"
-	dat += "Tele-Crystals left: [src.uses]<BR>"
-	dat += "<HR>"
-	dat += "<B>Request item:</B><BR>"
-	dat += "<I>Each item costs a number of tele-crystals as indicated by the number following their name.</I><br><BR>"
-
-	var/cost
-	var/item
-	var/name
-	var/path_obj
-	var/path_text
-	var/category_items = 1 //To prevent stupid :P
-
-	for(var/D in ItemList)
-		var/list/O = text2list(D, ":")
-		if(O.len != 3)	//If it is not an actual item, make a break in the menu.
-			if(O.len == 1)	//If there is one item, it's probably a title
-				dat += "<b>[O[1]]</b><br>"
-				category_items = 0
-			else	//Else, it's a white space.
-				if(category_items < 1)	//If there were no itens in the last category...
-					dat += "<i>We apologize, as you could not afford anything from this category.</i><br>"
-				dat += "<br>"
-			continue
-
-		path_text = O[1]
-		cost = Clamp(text2num(O[2]),1,20) //Another halfassed fix for href exploit ~Z
-
-		if(cost>uses)
-			continue
-
-		path_obj = text2path(path_text)
-
-		// Because we're using strings, this comes up if item paths change.
-		// Failure to handle this error borks uplinks entirely.  -Sayu
-		if(!path_obj)
-			error("Syndicate item is not a valid path: [path_text]")
-		else
-			item = new path_obj()
-			name = O[3]
-			del item
-
-			dat += "<A href='byond://?src=\ref[src];buy_item=[path_text];cost=[cost]'>[name]</A> ([cost])<BR>"
-			category_items++
-
-	dat += "<A href='byond://?src=\ref[src];buy_item=random'>Random Item (??)</A><br>"
-	dat += "<HR>"
-	return dat
 
 //If 'random' was selected
 /obj/item/device/uplink/proc/chooseRandomItem()
@@ -268,27 +209,16 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			feedback_add_details("traitor_uplink_items_bought","ST")
 
 /obj/item/device/uplink/Topic(href, href_list)
-	if (href_list["buy_item"])
-
-		if(href_list["buy_item"] == "random")
-			var/boughtItem = chooseRandomItem()
-			if(boughtItem)
-				href_list["buy_item"] = boughtItem
-				feedback_add_details("traitor_uplink_items_bought","RN")
-				return 1
-			else
-				return 0
-
-		else
-			if(text2num(href_list["cost"]) > uses) // Not enough crystals for the item
-				return 0
-
-			//if(usr:mind && ticker.mode.traitors[usr:mind])
-				//var/datum/traitorinfo/info = ticker.mode.traitors[usr:mind]
-				//info.spawnlist += href_list["buy_item"]
-
-			uses -= text2num(href_list["cost"])
-			handleStatTracking(href_list["buy_item"]) //Note: chooseRandomItem handles it's own stat tracking. This proc is not meant for 'random'.
+	if (href_list["ref_item"])
+		var/datum/spawn_item/i = locate(href_list["ref_item"])
+		if(!i)
+			return 0
+		if(!(i in items))
+			return 0
+		if(i.cost > uses)
+			return 0
+		uses -= i.cost
+		handleStatTracking(i.path) //Note: chooseRandomItem handles it's own stat tracking. This proc is not meant for 'random'.
 		return 1
 
 
@@ -381,17 +311,9 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			return 1
 
 		if(..(href, href_list) == 1)
-
-			if(!(href_list["buy_item"] in valid_items))
-				return
-
-			var/path_obj = text2path(href_list["buy_item"])
-
-			var/obj/I = new path_obj(get_turf(usr))
-			if(ishuman(usr))
-				var/mob/living/carbon/human/A = usr
-				A.put_in_any_hand_if_possible(I)
-			purchase_log += "[usr] ([usr.ckey]) bought [I]."
+			var/datum/spawn_item/i = locate(href_list["item_ref"])
+			i.give_item(usr)
+			purchase_log += "[usr] ([usr.ckey]) bought [i.name]."
 	interact(usr)
 	return 1
 

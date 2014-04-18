@@ -58,11 +58,11 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 	if(freerange)
 		if(frequency < 1200 || frequency > 1600)
-			frequency = sanitize_russian_frequency(frequency, maxf)
+			frequency = sanitize_frequency(frequency, maxf)
 	// The max freq is higher than a regular headset to decrease the chance of people listening in, if you use the higher channels.
 	else if (frequency < 1441 || frequency > maxf)
 		//world.log << "[src] ([type]) has a frequency of [frequency], sanitizing."
-		frequency = sanitize_russian_frequency(frequency, maxf)
+		frequency = sanitize_frequency(frequency, maxf)
 
 	set_frequency(frequency)
 
@@ -157,7 +157,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	else if (href_list["freq"])
 		var/new_frequency = (frequency + text2num(href_list["freq"]))
 		if (!freerange || (frequency < 1200 || frequency > 1600))
-			new_frequency = sanitize_russian_frequency(new_frequency, maxf)
+			new_frequency = sanitize_frequency(new_frequency, maxf)
 		set_frequency(new_frequency)
 		if(hidden_uplink)
 			if(hidden_uplink.check_trigger(usr, frequency, traitor_frequency))
