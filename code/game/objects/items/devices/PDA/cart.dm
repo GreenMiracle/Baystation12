@@ -559,7 +559,7 @@
 				return
 
 		if("Signal Frequency")
-			var/new_frequency = sanitize_russian_frequency(radio:frequency + text2num(href_list["sfreq"]))
+			var/new_frequency = sanitize_frequency(radio:frequency + text2num(href_list["sfreq"]))
 			radio:set_frequency(new_frequency)
 
 		if("Signal Code")

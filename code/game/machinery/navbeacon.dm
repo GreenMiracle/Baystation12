@@ -189,7 +189,7 @@ Transponder Codes:<UL>"}
 				usr.set_machine(src)
 
 				if (href_list["freq"])
-					freq = sanitize_russian_frequency(freq + text2num(href_list["freq"]))
+					freq = sanitize_frequency(freq + text2num(href_list["freq"]))
 					updateDialog()
 
 				else if(href_list["locedit"])
