@@ -33,7 +33,7 @@ Used In File(s): \code\game\objects\items\devices\uplinks.dm
 </div>
 	{{for items}}
 <div class="item">
-		{{:~link( Name, 'gear', {'buy_item' : obj_path, 'cost' : Cost}, Cost > ~root.crystals ? 'disabled' : null, null)}} -<span class="white"> {{:Cost}}</span>
+		{{:~link( Name, 'gear', {'item_ref' : item_ref}, Cost > ~root.crystals ? 'disabled' : null, null)}} -<span class="white"> {{:Cost}}</span>
 </div>
 	{{/for}}
 <br>
