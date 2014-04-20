@@ -343,26 +343,27 @@
 			return 1
 	return 1
 
-/obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
+/obj/structure/table/MouseDrop_T(atom/O, mob/user as mob)
+	if(istype(O, /mob/living))
+		var/mob/living/M = O
+		visible_message("<span class='notice'>[M] trying to clumb on the [src].</span>")
+		if(do_mob(M, get_turf(M), 8))
+			if(prob(50))
+				visible_message("<span class='notice'>[M] climbs on the [src].</span>")
+				M.loc = src.loc
+			else
+				visible_message("<span class='warning'>[M] slipped off the edge of the [src].</span>")
+				M.weakened += 5
 		return
-	if(isrobot(user))
+	if(istype(O, /obj/item))
+		if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
+			return
+		if(isrobot(user))
+			return
+		user.drop_item()
+		if (O.loc != src.loc)
+			step(O, get_dir(O, src))
 		return
-	user.drop_item()
-	if (O.loc != src.loc)
-		step(O, get_dir(O, src))
-	return
-
-/obj/structure/table/AltClick(var/mob/living/ML)
-	visible_message("<span class='notice'>[user] trying to clumb on the [src].</span>")
-	if(do_mob(user, get_turf(user), 8))
-		if(prob(50))
-			visible_message("<span class='notice'>[user] climbs on the [src].</span>")
-			usr.loc = src.loc
-		else
-			visible_message("<span class='warning'>[user] slipped off the edge of the [src].</span>")
-			usr.weakened += 5
-
 
 /obj/structure/table/attackby(obj/item/W as obj, mob/user as mob)
 	if (!W) return

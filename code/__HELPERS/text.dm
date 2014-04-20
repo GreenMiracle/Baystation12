@@ -60,7 +60,7 @@
 ////////////////////////////
 //Main encode/decode procs//
 ////////////////////////////
-/proc/just_fix_ja(var/msg)
+/proc/just_fix_ya(var/msg)
 	var/index = findtext(msg, "ÿ")
 	while(index)
 		msg = copytext(msg, 1, index) + "&#255;" + copytext(msg, index + 1)
