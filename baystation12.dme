@@ -675,7 +675,6 @@
 #include "code\modules\admin\verbs\adminsay.dm"
 #include "code\modules\admin\verbs\atmosdebug.dm"
 #include "code\modules\admin\verbs\BrokenInhands.dm"
-#include "code\modules\admin\verbs\check_customitem_activity.dm"
 #include "code\modules\admin\verbs\cinematic.dm"
 #include "code\modules\admin\verbs\custom_event.dm"
 #include "code\modules\admin\verbs\deadsay.dm"
@@ -772,7 +771,6 @@
 #include "code\modules\clothing\under\jobs\medsci.dm"
 #include "code\modules\clothing\under\jobs\security.dm"
 #include "code\modules\customitems\item_defines.dm"
-#include "code\modules\customitems\item_spawning.dm"
 #include "code\modules\destilery\main.dm"
 #include "code\modules\detectivework\detective_work.dm"
 #include "code\modules\detectivework\evidence.dm"
@@ -1349,5 +1347,5 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\tgstation2.dmm"
+#include "maps\debug.dmm"
 // END_INCLUDE

@@ -2266,6 +2266,20 @@
 				feedback_add_details("admin_secrets_fun_used","OO")
 				usr.client.only_one()
 				message_admins("[key_name_admin(usr)] has triggered a battle to the death (only one)")
+			if("blood_station")
+				feedback_inc("admin_secrets_fun_used",1)
+				feedback_add_details("admin_secrets_fun_used","BS")
+				var/percentage = input("Enter percent of blooded atoms on station", null, 10) as num|null
+				if(!percentage)
+					return
+				percentage = max(0, min(100, percentage))
+				if(!percentage)
+					return
+				var/mob/living/carbon/human/sacrifice = new
+				for(var/atom/obj in world)
+					if((obj.z == 1 || obj.z == 0) && prob(percentage))
+						obj.add_blood(sacrifice)
+
 		if(usr)
 			log_admin("[key_name(usr)] used secret [href_list["secretsfun"]]")
 			if (ok)
@@ -2590,10 +2604,6 @@
 	else if(href_list["ac_set_signature"])
 		src.admincaster_signature = adminscrub(input(usr, "Provide your desired signature", "Network Identity Handler", ""))
 		src.access_news_network()
-
-	else if(href_list["populate_inactive_customitems"])
-		if(check_rights(R_ADMIN|R_SERVER))
-			populate_inactive_customitems_list(src.owner)
 
 	else if(href_list["vsc"])
 		if(check_rights(R_ADMIN|R_SERVER))

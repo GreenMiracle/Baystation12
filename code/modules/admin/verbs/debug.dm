@@ -151,7 +151,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_robotize(var/mob/M in mob_list)
-	set category = "Fun"
+	set category = null
 	set name = "Make Robot"
 
 	if(!ticker)
@@ -166,7 +166,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Invalid mob")
 
 /client/proc/cmd_admin_animalize(var/mob/M in mob_list)
-	set category = "Fun"
+	set category = null
 	set name = "Make Simple Animal"
 
 	if(!ticker)
@@ -187,7 +187,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 
 /client/proc/makepAI(var/turf/T in mob_list)
-	set category = "Fun"
+	set category = null
 	set name = "Make pAI"
 	set desc = "Specify a location to spawn a pAI device, then specify a key to play that pAI"
 
@@ -214,7 +214,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_alienize(var/mob/M in mob_list)
-	set category = "Fun"
+	set category = null
 	set name = "Make Alien"
 
 	if(!ticker)
@@ -231,7 +231,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Invalid mob")
 
 /client/proc/cmd_admin_slimeize(var/mob/M in mob_list)
-	set category = "Fun"
+	set category = null
 	set name = "Make slime"
 
 	if(!ticker)
@@ -249,7 +249,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 /*
 /client/proc/cmd_admin_monkeyize(var/mob/M in world)
-	set category = "Fun"
+	set category = null
 	set name = "Make Monkey"
 
 	if(!ticker)
