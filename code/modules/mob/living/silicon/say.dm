@@ -24,7 +24,7 @@
 			return
 
 	if (stat == 2)
-		message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+		message = trim(copytext(sanitize_russian(message), 1, MAX_MESSAGE_LEN))
 		return say_dead(message)
 
 	var/bot_type = 0			//Let's not do a fuck ton of type checks, thanks.
@@ -61,7 +61,7 @@
 		if(message_mode != "binary" && !R.is_component_functioning("radio"))
 			src << "\red Your radio isn't functional at this time."
 			return
-			
+
 
 	if(message_mode && message_mode != "general")
 		message = trim(copytext(message,3))
@@ -69,7 +69,7 @@
 	switch(message_mode)
 		if("department")
 			switch(bot_type)
-				if(IS_AI)			
+				if(IS_AI)
 					AI.holopad_talk(message)
 				if(IS_ROBOT)
 					log_say("[key_name(src)] : [message]")
@@ -114,9 +114,9 @@
 						R.radio.talk_into(src,message,message_mode,verb)
 					if(IS_PAI)
 						log_say("[key_name(src)] : [message]")
-						P.radio.talk_into(src,message,message_mode,verb)	
+						P.radio.talk_into(src,message,message_mode,verb)
 				return
-		
+
 
 	return ..(message,null,verb)
 
@@ -164,7 +164,7 @@
 		return
 
 	var/verb = say_quote(message)
-	
+
 
 	var/rendered = "<i><span class='game say'>Robotic Talk, <span class='name'>[name]</span> <span class='message'>[verb], \"[message]\"</span></span></i>"
 
@@ -196,7 +196,7 @@
 		var/message_beep
 		verb = "beeps"
 		message_beep = "beep beep beep"
-		
+
 		rendered = "<i><span class='game say'><span class='name'>[voice_name]</span> <span class='message'>[verb], \"[message_beep]\"</span></span></i>"
 
 		for (var/mob/M in heard)
