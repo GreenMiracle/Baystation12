@@ -35,10 +35,17 @@
 		var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(H)
 		L.imp_in = H
 		L.implanted = 1
+		var/obj/item/weapon/implant/death_alarm/A = new/obj/item/weapon/implant/death_alarm(H)
+		A.imp_in = H
+		A.implanted = 1
+		A.implanted(H)
 		world << "<b>[H.real_name] is the captain!</b>"
 		var/datum/organ/external/affected = H.organs_by_name["head"]
 		affected.implants += L
+		affected.implants += A
 		L.part = affected
+		A.part = affected
+
 		return 1
 
 	get_access()
@@ -87,4 +94,13 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H), slot_r_hand)
 		else
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/box/ids(H.back), slot_in_backpack)
+
+		var/obj/item/weapon/implant/death_alarm/A = new/obj/item/weapon/implant/death_alarm(H)
+		A.imp_in = H
+		A.implanted = 1
+		A.implanted(H)
+		var/datum/organ/external/affected = H.organs_by_name["head"]
+		affected.implants += A
+		A.part = affected
+
 		return 1

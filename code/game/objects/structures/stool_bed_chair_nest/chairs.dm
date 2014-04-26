@@ -112,6 +112,11 @@
 /obj/structure/stool/bed/chair/comfy/lime
 	icon_state = "comfychair_lime"
 
+/obj/structure/stool/bed/chair/evac
+	name = "comfy chair"
+	icon_state = "schair"
+	anchored = 1
+
 /obj/structure/stool/bed/chair/office/Move()
 	..()
 	if(buckled_mob)
