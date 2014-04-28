@@ -434,16 +434,6 @@
 		W.update_icon()
 		return
 
-/obj/item/weapon/storage/box/beanbang
-	name = "box of beanbang ammo"
-	desc = "Contains beanbang ammo."
-	storage_slots = 14
-
-	New()
-		..()
-		for (var/i; i < storage_slots; i++)
-			new /obj/item/ammo_casing/shotgun/beanbag(src)
-
 /obj/item/weapon/storage/box/autoinjectors
 	name = "box of injectors"
 	desc = "Contains autoinjectors."

@@ -150,3 +150,43 @@
 	ammo_type = "/obj/item/ammo_casing/chameleon"
 	max_ammo = 0
 	multiple_sprites = 1
+
+/obj/item/weapon/storage/box/beanbang
+	name = "box of beanbang ammo"
+	desc = "Contains shotgun ammo."
+	storage_slots = 14
+
+	New()
+		..()
+		for (var/i; i < storage_slots; i++)
+			new /obj/item/ammo_casing/shotgun/beanbag(src)
+
+/obj/item/weapon/storage/box/dart
+	name = "box of dart ammo"
+	desc = "Contains shotgun ammo."
+	storage_slots = 14
+
+	New()
+		..()
+		for (var/i; i < storage_slots; i++)
+			new /obj/item/ammo_casing/shotgun/dart(src)
+
+/obj/item/weapon/storage/box/stunshell
+	name = "box of stun ammo"
+	desc = "Contains shotgun ammo."
+	storage_slots = 14
+
+	New()
+		..()
+		for (var/i; i < storage_slots; i++)
+			new /obj/item/ammo_casing/shotgun/stunshell(src)
+
+/obj/item/weapon/storage/box/blank
+	name = "box of blank ammo"
+	desc = "Contains shotgun ammo."
+	storage_slots = 14
+
+	New()
+		..()
+		for (var/i; i < storage_slots; i++)
+			new /obj/item/ammo_casing/shotgun/blank(src)
