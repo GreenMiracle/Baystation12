@@ -164,7 +164,6 @@
 #include "code\defines\procs\command_alert.dm"
 #include "code\defines\procs\dbcore.dm"
 #include "code\defines\procs\sd_Alert.dm"
-#include "code\defines\procs\statistics.dm"
 #include "code\game\asteroid.dm"
 #include "code\game\atoms.dm"
 #include "code\game\atoms_movable.dm"
@@ -595,6 +594,7 @@
 #include "code\game\objects\structures\musician.dm"
 #include "code\game\objects\structures\noticeboard.dm"
 #include "code\game\objects\structures\safe.dm"
+#include "code\game\objects\structures\signs.dm"
 #include "code\game\objects\structures\tables_racks.dm"
 #include "code\game\objects\structures\tank_dispenser.dm"
 #include "code\game\objects\structures\target_stake.dm"
@@ -1348,4 +1348,5 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
+#include "maps\fernflower_2.1.dmm"
 // END_INCLUDE

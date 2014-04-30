@@ -42,7 +42,6 @@
 		if(ismob(A))
 			toxmob(A)
 		if((istype(A,/obj/machinery/the_singularitygen))||(istype(A,/obj/machinery/singularity)))
-			world << "[A:energy] += [energy]"
 			A:energy += energy
 		else if( istype(A,/obj/effect/rust_particle_catcher) )
 			var/obj/effect/rust_particle_catcher/collided_catcher = A

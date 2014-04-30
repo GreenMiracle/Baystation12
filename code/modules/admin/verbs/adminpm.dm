@@ -70,7 +70,7 @@
 	if(!check_rights(R_SERVER|R_DEBUG,0))
 		msg = sanitize_russian(copytext(msg,1,MAX_MESSAGE_LEN))
 	else
-		msg = just_fix_ya(copytext(msg,1,MAX_MESSAGE_LEN))
+		msg = sanitize_ya(copytext(msg,1,MAX_MESSAGE_LEN))
 	if(!msg)	return
 
 	var/recieve_color = "purple"

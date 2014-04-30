@@ -16,7 +16,7 @@
 // Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
 /proc/sanitizeSQL(var/t as text)
 	var/sanitized_text = replacetext(t, "'", "\\'")
-	sanitized_text = replacetext(sanitized_text, "\"", "\\\"")
+	sanitized_text = sanitize_ya(replacetext(sanitized_text, "\"", "\\\""))
 	return sanitized_text
 
 /*
@@ -60,7 +60,7 @@
 ////////////////////////////
 //Main encode/decode procs//
 ////////////////////////////
-/proc/just_fix_ya(var/msg)
+/proc/sanitize_ya(var/msg)
 	var/index = findtext(msg, "ÿ")
 	while(index)
 		msg = copytext(msg, 1, index) + "&#255;" + copytext(msg, index + 1)
