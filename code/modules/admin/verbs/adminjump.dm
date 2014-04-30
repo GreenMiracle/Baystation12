@@ -1,3 +1,4 @@
+/*
 /client/proc/Jump(var/area/A in return_sorted_areas())
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
@@ -29,7 +30,7 @@
 	else
 		alert("Admin jumping disabled")
 	return
-
+*/
 /client/proc/jumptomob(var/mob/M in mob_list)
 	set category = "Admin"
 	set name = "Jump to Mob"
@@ -97,7 +98,7 @@
 		alert("Admin jumping disabled")
 
 /client/proc/Getmob(var/mob/M in mob_list)
-	set category = "Admin"
+	set category = null
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
 	if(!src.holder)
@@ -112,7 +113,7 @@
 		alert("Admin jumping disabled")
 
 /client/proc/Getkey()
-	set category = "Admin"
+	set category = null
 	set name = "Get Key"
 	set desc = "Key to teleport"
 

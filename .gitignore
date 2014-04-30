@@ -4,4 +4,5 @@
 *.rsc
 *.dmb
 *.lk
-data/
+/data
+/baystation12.int

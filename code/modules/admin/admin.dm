@@ -24,9 +24,9 @@ var/global/floorIsLava = 0
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 /datum/admins/proc/show_player_panel(var/mob/M in mob_list)
-	set category = "Admin"
+	set category = null
 	set name = "Show Player Panel"
-	set desc="Edit player (respawn, ban, heal, etc)"
+	set desc = "Edit player (respawn, ban, heal, etc)"
 
 	if(!M)
 		usr << "You seem to be selecting a mob that doesn't exist anymore."
@@ -616,8 +616,9 @@ var/global/floorIsLava = 0
 			<A href='?src=\ref[src];secretsfun=spacevines'>Spawn Space-Vines</A><BR>
 			<A href='?src=\ref[src];secretsfun=comms_blackout'>Trigger a communication blackout</A><BR>
 			<BR>
-			<B>Fun Secrets</B><BR>
+			<B>"Fun" Secrets</B><BR>
 			<BR>
+			<A href='?src=\ref[src];secretsfun=blood_station'>Blood for station!</A><BR>
 			<A href='?src=\ref[src];secretsfun=sec_clothes'>Remove 'internal' clothing</A><BR>
 			<A href='?src=\ref[src];secretsfun=sec_all_clothes'>Remove ALL clothing</A><BR>
 			<A href='?src=\ref[src];secretsfun=monkey'>Turn all humans into monkeys</A><BR>
@@ -1011,7 +1012,7 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
-	set category = "Admin"
+	set category = null
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
 
@@ -1074,7 +1075,7 @@ var/global/floorIsLava = 0
 		usr << "<b>No AIs located</b>" //Just so you know the thing is actually working and not just ignoring you.
 
 /datum/admins/proc/show_skills(var/mob/living/carbon/human/M as mob in world)
-	set category = "Admin"
+	set category = null
 	set name = "Show Skills"
 
 	if (!istype(src,/datum/admins))
