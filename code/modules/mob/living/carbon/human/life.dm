@@ -66,6 +66,8 @@
 	if(life_tick%30==15)
 		hud_updateflag = 1022
 
+	voice = GetVoice()
+
 	//No need to update all of these procs if the guy is dead.
 	if(stat != DEAD && !in_stasis)
 		if(air_master.current_cycle%4==2 || failed_last_breath) 	//First, resolve location and get a breath
@@ -143,7 +145,6 @@
 		return ONE_ATMOSPHERE - pressure_difference
 
 /mob/living/carbon/human
-
 	proc/handle_disabilities()
 		if (disabilities & EPILEPSY)
 			if ((prob(1) && paralysis < 1))
@@ -161,6 +162,7 @@
 					emote("cough")
 					return
 		if (disabilities & TOURETTES)
+			speech_problem_flag = 1
 			if ((prob(10) && paralysis <= 1))
 				Stun(10)
 				spawn( 0 )
@@ -178,6 +180,7 @@
 					pixel_y = old_y
 					return
 		if (disabilities & NERVOUS)
+			speech_problem_flag = 1
 			if (prob(10))
 				stuttering = max(10, stuttering)
 		// No. -- cib
@@ -232,6 +235,7 @@
 			if(!gene.block)
 				continue
 			if(gene.is_active(src))
+				speech_problem_flag = 1
 				gene.OnMobLife(src)
 
 		if (radiation)
@@ -253,6 +257,8 @@
 					adjustOxyLoss(-(rads))
 					adjustToxLoss(-(rads))
 					updatehealth()
+					return
+				if(species.flags & IS_SYNTHETIC)
 					return
 
 				var/damage = 0
@@ -999,7 +1005,7 @@
 			updatehealth()	//TODO
 			if(!in_stasis)
 				handle_organs()	//Optimized.
-				handle_blood()  
+				handle_blood()
 
 			if(health <= config.health_threshold_dead || brain_op_stage == 4.0)
 				death()
@@ -1052,6 +1058,7 @@
 				if(halloss > 0)
 					adjustHalLoss(-3)
 			else if(sleeping)
+				speech_problem_flag = 1
 				handle_dreams()
 				adjustHalLoss(-3)
 				if (mind)
@@ -1076,7 +1083,7 @@
 				E = get_visible_implants(0)
 				if(!E.len)
 					embedded_flag = 0
-				
+
 
 			//Eyes
 			if(sdisabilities & BLIND)	//disabled-blind, doesn't get better on its own
@@ -1103,16 +1110,20 @@
 
 			//Other
 			if(stunned)
+				speech_problem_flag = 1
 				AdjustStunned(-1)
 
 			if(weakened)
 				weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
 
 			if(stuttering)
+				speech_problem_flag = 1
 				stuttering = max(stuttering-1, 0)
 			if (slurring)
+				speech_problem_flag = 1
 				slurring = max(slurring-1, 0)
 			if(silent)
+				speech_problem_flag = 1
 				silent = max(silent-1, 0)
 
 			if(druggy)
@@ -1136,7 +1147,7 @@
 
 		if(hud_updateflag)
 			handle_hud_list()
-	
+
 
 		for(var/image/hud in client.images)
 			if(copytext(hud.icon_state,1,4) == "hud") //ugly, but icon comparison is worse, I believe
@@ -1303,7 +1314,7 @@
 			else if(!seer)
 				see_invisible = SEE_INVISIBLE_LIVING
 
-			
+
 
 			if(healths)
 				if (analgesic)
@@ -1448,7 +1459,7 @@
 					V.activate(src)
 				// activate may have deleted the virus
 				if(!V) continue
-	
+
 				// check if we're immune
 				if(V.antigen & src.antibodies)
 					V.dead = 1

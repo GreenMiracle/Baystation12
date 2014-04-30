@@ -977,6 +977,10 @@ var/list/ghostteleportlocs = list()
 		name = "\improper Engineering Hallway"
 		icon_state = "engine_hallway"
 
+	engine_eva
+		name = "\improper Engine EVA"
+		icon_state = "engine_eva"
+
 	workshop
 		name = "\improper Engineering Workshop"
 		icon_state = "engine_storage"
@@ -1238,6 +1242,11 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Firing Range"
 	icon_state = "firingrange"
 
+/area/security/tactical
+	name = "\improper Tactical Equipment"
+	icon_state = "Tactical"
+
+
 /*
 	New()
 		..()
@@ -1371,10 +1380,6 @@ var/list/ghostteleportlocs = list()
 
 /area/toxins/misc_lab
 	name = "\improper Miscellaneous Research"
-	icon_state = "toxmisc"
-
-/area/toxins/telesci
-	name = "\improper Telescience Lab"
 	icon_state = "toxmisc"
 
 /area/toxins/server
