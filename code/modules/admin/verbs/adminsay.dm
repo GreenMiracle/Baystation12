@@ -22,7 +22,7 @@
 	set name = "Msay"
 	set hidden = 1
 
-	if(!check_rights(R_ADMIN|R_MOD))	return
+	if(!check_rights(R_ADMIN))	return
 
 	msg = copytext(sanitize_russian(msg), 1, MAX_MESSAGE_LEN)
 	log_admin("MOD: [key_name(src)] : [msg]")
@@ -33,5 +33,5 @@
 	if (check_rights(R_ADMIN,0))
 		color = "adminmod"
 	for(var/client/C in admins)
-		if((R_ADMIN|R_MOD) & C.holder.rights)
+		if(R_ADMIN & C.holder.rights)
 			C << "<span class='[color]'><span class='prefix'>MOD:</span> <EM>[key_name(src,1)]</EM> (<A HREF='?src=\ref[C.holder];adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</span></span>"

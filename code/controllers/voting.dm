@@ -210,7 +210,7 @@ datum/controller/vote
 						return 0
 					choices.Add(config.votable_modes)
 				if("crew_transfer")
-					if(check_rights(R_ADMIN|R_MOD, 0))
+					if(check_rights(R_ADMIN, 0))
 						question = "End the shift?"
 						choices.Add("Initiate Crew Transfer", "Continue The Round")
 					else

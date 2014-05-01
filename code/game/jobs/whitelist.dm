@@ -34,19 +34,13 @@ var/list/whitelist = list()
 /proc/is_alien_whitelisted(mob/M, var/species)
 	if(!config.usealienwhitelist)
 		return 1
-	if(species == "human" || species == "Human")
-		return 1
-	if(species == "machine" || species == "Machine")
-		return 1
 	if(check_rights(R_ADMIN, 0))
 		return 1
 	if(!alien_whitelist)
 		return 0
 	if(M && species)
 		for (var/s in alien_whitelist)
-			if(findtext(s,"[M.ckey] - [species]"))
-				return 1
-			if(findtext(s,"[M.ckey] - All"))
+			if(findtext(s,"[M.ckey]"))
 				return 1
 
 	return 0

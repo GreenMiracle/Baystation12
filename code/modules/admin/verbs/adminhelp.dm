@@ -25,7 +25,7 @@
 
 	//send this msg to all admins
 	for(var/client/X in admins)
-		if((R_ADMIN|R_MOD) & X.holder.rights)
+		if(R_ADMIN & X.holder.rights)
 			if(X.prefs.toggles & SOUND_ADMINHELP)
 				X << 'sound/effects/adminhelp.ogg'
 			X << msg
