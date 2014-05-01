@@ -236,6 +236,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 /obj/machinery/blackbox_recorder/proc/get_round_feedback()
 	return feedback
 
+/*
 /obj/machinery/blackbox_recorder/proc/round_end_data_gathering()
 
 	var/pda_msg_amt = 0
@@ -265,13 +266,13 @@ var/obj/machinery/blackbox_recorder/blackbox
 
 
 	feedback_set_details("round_end","[time2text(world.realtime)]") //This one MUST be the last one that gets set.
-
+*/
 
 //This proc is only to be called at round end.
 /obj/machinery/blackbox_recorder/proc/save_all_data_to_sql()
 	if(!feedback) return
 
-	round_end_data_gathering() //round_end time logging and some other data processing
+	//round_end_data_gathering() //round_end time logging and some other data processing
 	establish_db_connection()
 	if(!dbcon.IsConnected()) return
 	var/round_id

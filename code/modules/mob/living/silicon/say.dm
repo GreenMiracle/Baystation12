@@ -24,7 +24,7 @@
 			return
 
 	if (stat == 2)
-		message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+		message = trim(copytext(sanitize_russian(message), 1, MAX_MESSAGE_LEN))
 		return say_dead(message)
 
 	if(copytext(message,1,2) == "*")
