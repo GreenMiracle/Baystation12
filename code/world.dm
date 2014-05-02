@@ -227,17 +227,17 @@
 	if (src.status != s)
 		src.status = s
 
-#define FAILED_DB_CONNECTION_CUTOFF 5
+#define FAILED_DB_CONNECTION_CUTOFF 3
 var/failed_db_connections = 0
 
 /hook/startup/proc/connectDB()
-	if(!setup_database_connection())
+	if(!setup_db_connection())
 		world.log << "Your server failed to establish a connection with the feedback database."
 	else
 		world.log << "Feedback database connection established."
 	return 1
 
-proc/setup_database_connection()
+proc/setup_db_connection()
 
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
@@ -267,7 +267,7 @@ proc/establish_db_connection()
 		return 0
 
 	if(!dbcon || !dbcon.IsConnected())
-		return setup_database_connection()
+		return setup_db_connection()
 	else
 		return 1
 

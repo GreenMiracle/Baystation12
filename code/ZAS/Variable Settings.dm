@@ -1,5 +1,6 @@
 var/global/vs_control/vsc = new
 
+//Dont change this ~Intercross21
 /vs_control
 	var/fire_consuption_rate = 0.25
 	var/fire_consuption_rate_NAME = "Fire - Air Consumption Ratio"
@@ -13,27 +14,26 @@ var/global/vs_control/vsc = new
 	var/fire_fuel_energy_release_NAME = "Fire - Fuel energy release"
 	var/fire_fuel_energy_release_DESC = "The energy in joule released when burning one mol of a burnable substance"
 
-
 	var/IgnitionLevel = 0.5
 	var/IgnitionLevel_DESC = "Determines point at which fire can ignite"
 
-	var/airflow_lightest_pressure = 20
+	var/airflow_lightest_pressure = 15
 	var/airflow_lightest_pressure_NAME = "Airflow - Small Movement Threshold %"
 	var/airflow_lightest_pressure_DESC = "Percent of 1 Atm. at which items with the small weight classes will move."
 
-	var/airflow_light_pressure = 35
+	var/airflow_light_pressure = 30
 	var/airflow_light_pressure_NAME = "Airflow - Medium Movement Threshold %"
 	var/airflow_light_pressure_DESC = "Percent of 1 Atm. at which items with the medium weight classes will move."
 
-	var/airflow_medium_pressure = 50
+	var/airflow_medium_pressure = 45
 	var/airflow_medium_pressure_NAME = "Airflow - Heavy Movement Threshold %"
 	var/airflow_medium_pressure_DESC = "Percent of 1 Atm. at which items with the largest weight classes will move."
 
-	var/airflow_heavy_pressure = 65
+	var/airflow_heavy_pressure = 60
 	var/airflow_heavy_pressure_NAME = "Airflow - Mob Movement Threshold %"
 	var/airflow_heavy_pressure_DESC = "Percent of 1 Atm. at which mobs will move."
 
-	var/airflow_dense_pressure = 85
+	var/airflow_dense_pressure = 75
 	var/airflow_dense_pressure_NAME = "Airflow - Dense Movement Threshold %"
 	var/airflow_dense_pressure_DESC = "Percent of 1 Atm. at which items with canisters and closets will move."
 
@@ -49,11 +49,11 @@ var/global/vs_control/vsc = new
 	var/airflow_stun_NAME = "Airflow Impact - Stunning"
 	var/airflow_stun_DESC = "How much a mob is stunned when hit by an object."
 
-	var/airflow_damage = 2
+	var/airflow_damage = 3
 	var/airflow_damage_NAME = "Airflow Impact - Damage"
 	var/airflow_damage_DESC = "Damage from airflow impacts."
 
-	var/airflow_speed_decay = 1.5
+	var/airflow_speed_decay = 1
 	var/airflow_speed_decay_NAME = "Airflow Speed Decay"
 	var/airflow_speed_decay_DESC = "How rapidly the speed gained from airflow decays."
 
@@ -65,7 +65,7 @@ var/global/vs_control/vsc = new
 	var/airflow_mob_slowdown_NAME = "Airflow Slowdown"
 	var/airflow_mob_slowdown_DESC = "Time in tenths of a second to add as a delay to each movement by a mob if they are fighting the pull of the airflow."
 
-	var/connection_insulation = 1
+	var/connection_insulation = 0 //Yes, we want heat transfer
 	var/connection_insulation_NAME = "Connections - Insulation"
 	var/connection_insulation_DESC = "Boolean, should doors forbid heat transfer?"
 

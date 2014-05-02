@@ -55,9 +55,6 @@ datum/controller/game_controller/New()
 datum/controller/game_controller/proc/setup()
 	world.tick_lag = config.Ticklag
 
-	spawn(20)
-		createRandomZlevel()
-
 	if(!air_master)
 		air_master = new /datum/controller/air_system()
 		air_master.Setup()
@@ -75,6 +72,9 @@ datum/controller/game_controller/proc/setup()
 
 	for(var/i=0, i<max_secret_rooms, i++)
 		make_mining_asteroid_secret()
+
+	spawn(0)
+		createRandomZlevel()
 
 	spawn(0)
 		if(ticker)
@@ -275,7 +275,7 @@ datum/controller/game_controller/proc/process_machines()
 					if(M)
 						if(M.use_power)
 							M.auto_use_power()
-			
+
 		if(A.apc.len && A.master == A)
 			i++
 			continue
@@ -291,8 +291,8 @@ datum/controller/game_controller/proc/process_machines()
 				active_areas |= A
 		rebuild_active_areas = 0
 
-	
-		
+
+
 
 datum/controller/game_controller/proc/process_objects()
 	var/i = 1

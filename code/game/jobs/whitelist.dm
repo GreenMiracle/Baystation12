@@ -11,37 +11,37 @@ var/list/whitelist = list()
 	whitelist = file2list(WHITELISTFILE)
 	if(!whitelist.len)	whitelist = null
 
-/proc/check_whitelist(mob/M /*, var/rank*/)
+/proc/is_whitelisted(mob/M /*, var/rank*/)
 	if(!whitelist)
 		return 0
 	return ("[M.ckey]" in whitelist)
 
-/var/list/alien_whitelist = list()
+var/list/alien_whitelist = list()
 
 /hook/startup/proc/loadAlienWhitelist()
 	if(config.usealienwhitelist)
-		load_alienwhitelist()
+		load_alien_whitelist()
 	return 1
 
-/proc/load_alienwhitelist()
-	var/text = file2text("config/alienwhitelist.txt")
-	if (!text)
-		log_misc("Failed to load config/alienwhitelist.txt")
-	else
-		alien_whitelist = text2list(text, "\n")
+/proc/load_alien_whitelist()
+	establish_db_connection()
+	if(!dbcon.IsConnected())
+		return
+	var/DBQuery/query = dbcon.NewQuery("SELECT ckey FROM alien_whitelist WHERE *")
+	query.Execute()
+	var/ckey = query.NextRow()
+	while(ckey)
+		alien_whitelist.Add(ckey)
+		ckey = query.NextRow()
 
-//todo: admin aliens
-/proc/is_alien_whitelisted(mob/M, var/species)
+/proc/is_alien_whitelisted(mob/M)
 	if(!config.usealienwhitelist)
 		return 1
 	if(check_rights(R_ADMIN, 0))
 		return 1
-	if(!alien_whitelist)
-		return 0
-	if(M && species)
-		for (var/s in alien_whitelist)
-			if(findtext(s,"[M.ckey]"))
-				return 1
+	if(M && M.ckey)
+		if(M.ckey in alien_whitelist)
+			return 1
 
 	return 0
 
