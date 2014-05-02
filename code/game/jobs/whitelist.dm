@@ -1,4 +1,4 @@
-#define WHITELISTFILE "data/whitelist.txt"
+#define WHITELISTFILE "config/whitelist.txt"
 
 var/list/whitelist = list()
 
@@ -27,7 +27,7 @@ var/list/alien_whitelist = list()
 	establish_db_connection()
 	if(!dbcon.IsConnected())
 		return
-	var/DBQuery/query = dbcon.NewQuery("SELECT ckey FROM alien_whitelist WHERE *")
+	var/DBQuery/query = dbcon.NewQuery("SELECT ckey FROM alien_whitelist")
 	query.Execute()
 	var/ckey = query.NextRow()
 	while(ckey)
