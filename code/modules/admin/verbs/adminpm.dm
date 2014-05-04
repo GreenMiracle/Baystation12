@@ -198,14 +198,12 @@
 		src << "\blue [msg]"
 		return
 
-	send2adminirc("PlayerPM from [key_name(src)]: [html_decode(msg)]")
-
 	src << "<font color='blue'>IRC PM to-<b>IRC-Admins</b>: [msg]</font>"
 
 	log_admin("PM: [key_name(src)]->IRC: [msg]")
 	for(var/client/X in admins)
 		if(X == src)
 			continue
-		if((X.holder.rights & R_ADMIN) || (X.holder.rights & R_MOD))
-			X << "<B><font color='blue'>PM: [key_name(src, X, 0)]-&gt;IRC-Admins:</B> \blue [msg]</font>"	
+		if(X.holder.rights & R_ADMIN)
+			X << "<B><font color='blue'>PM: [key_name(src, X, 0)]-&gt;IRC-Admins:</B> \blue [msg]</font>"
 

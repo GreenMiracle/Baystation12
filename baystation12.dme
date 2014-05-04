@@ -1346,5 +1346,5 @@
 #include "code\ZAS\Zone.dm"
 #include "interface\interface.dm"
 #include "interface\skin.dmf"
-#include "maps\fernflower_2.1.dmm"
+#include "maps\debug.dmm"
 // END_INCLUDE
