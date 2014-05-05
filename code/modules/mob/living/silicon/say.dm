@@ -23,6 +23,8 @@
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
 			return
 
+	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN)) 
+
 	if (stat == 2)
 		message = trim(copytext(sanitize_russian(message), 1, MAX_MESSAGE_LEN))
 		return say_dead(message)
