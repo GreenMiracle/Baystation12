@@ -2,7 +2,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 //Dont change this ~Intercross21
 /pl_control
-	var/PLASMA_DMG = 15
+	var/PLASMA_DMG = 3
 	var/PLASMA_DMG_NAME = "Plasma Damage Amount"
 	var/PLASMA_DMG_DESC = "Self Descriptive"
 
@@ -14,7 +14,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	var/PLASMAGUARD_ONLY_NAME = "\"PlasmaGuard Only\""
 	var/PLASMAGUARD_ONLY_DESC = "If this is on, only biosuits and spacesuits protect against contamination and ill effects."
 
-	var/GENETIC_CORRUPTION = 200
+	var/GENETIC_CORRUPTION = 100
 	var/GENETIC_CORRUPTION_NAME = "Genetic Corruption Chance"
 	var/GENETIC_CORRUPTION_DESC = "Chance of genetic corruption as well as toxic damage, X in 10,000."
 
@@ -26,7 +26,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 	var/EYE_BURNS_NAME = "Eye Burns"
 	var/EYE_BURNS_DESC = "Plasma burns the eyes of anyone not wearing eye protection."
 
-	var/CONTAMINATION_LOSS = 0.75
+	var/CONTAMINATION_LOSS = 0.05
 	var/CONTAMINATION_LOSS_NAME = "Contamination Loss"
 	var/CONTAMINATION_LOSS_DESC = "How much toxin damage is dealt from contaminated clothing" //Per tick?  ASK ARYN
 

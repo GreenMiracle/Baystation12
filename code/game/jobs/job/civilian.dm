@@ -192,10 +192,6 @@
 			H.equip_to_slot_or_del(new /obj/item/weapon/storage/bag/ore(H), slot_in_backpack)
 		return 1
 
-
-
-//Griff //BS12 EDIT
-/*
 /datum/job/clown
 	title = "Clown"
 	flag = CLOWN
@@ -266,7 +262,7 @@
 		H.mind.special_verbs += /client/proc/mimewall
 		H.miming = 1
 		return 1
-*/
+
 
 
 /datum/job/janitor

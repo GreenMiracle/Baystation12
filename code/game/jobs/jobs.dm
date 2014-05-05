@@ -94,6 +94,8 @@ var/list/civilian_positions = list(
 	"Quartermaster",
 	"Cargo Technician",
 	"Shaft Miner",
+	"Mime",
+	"Clown",
 	"Lawyer",
 	"Chaplain",
 	"Assistant"
