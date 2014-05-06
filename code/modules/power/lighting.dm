@@ -243,7 +243,7 @@
 	spawn(2)
 		switch(fitting)
 			if("tube")
-				brightness = 6
+				brightness = 5
 				if(prob(2))
 					broken(1)
 			if("bulb")
