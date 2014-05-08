@@ -54,7 +54,7 @@
 			return
 		cmd_admin_irc_pm()
 		return
-		
+
 
 
 	//Logs all hrefs
@@ -163,6 +163,8 @@
 	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 
+	if(prefs.lastchangelog_animus != changelog_animus_hash)
+		winset(src, "rpane.changelog_animus", "background-color=#eaeaea;font-style=bold")
 
 	//////////////
 	//DISCONNECT//

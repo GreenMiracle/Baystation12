@@ -1,5 +1,5 @@
 #define SAVEFILE_VERSION_MIN	8
-#define SAVEFILE_VERSION_MAX	11
+#define SAVEFILE_VERSION_MAX	12
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -48,24 +48,26 @@
 			return 0
 
 	//general preferences
-	S["ooccolor"]			>> ooccolor
-	S["lastchangelog"]		>> lastchangelog
-	S["UI_style"]			>> UI_style
-	S["be_special"]			>> be_special
-	S["default_slot"]		>> default_slot
-	S["toggles"]			>> toggles
-	S["UI_style_color"]		>> UI_style_color
-	S["UI_style_alpha"]		>> UI_style_alpha
+	S["ooccolor"]				>> ooccolor
+	S["lastchangelog"]			>> lastchangelog
+	S["lastchangelog_animus"] 	>> lastchangelog_animus
+	S["UI_style"]				>> UI_style
+	S["be_special"]				>> be_special
+	S["default_slot"]			>> default_slot
+	S["toggles"]				>> toggles
+	S["UI_style_color"]			>> UI_style_color
+	S["UI_style_alpha"]			>> UI_style_alpha
 
-	//sanitize_russian
-	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
-	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
-	UI_style		= sanitize_inlist(UI_style, list("White", "Midnight","Orange","old"), initial(UI_style))
-	be_special		= sanitize_integer(be_special, 0, 65535, initial(be_special))
-	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
-	toggles			= sanitize_integer(toggles, 0, 65535, initial(toggles))
-	UI_style_color	= sanitize_hexcolor(UI_style_color, initial(UI_style_color))
-	UI_style_alpha	= sanitize_integer(UI_style_alpha, 0, 255, initial(UI_style_alpha))
+	//sanitize
+	ooccolor				= sanitize_hexcolor(ooccolor, initial(ooccolor))
+	lastchangelog			= sanitize_text(lastchangelog, initial(lastchangelog))
+	lastchangelog_animus 	= sanitize_text(lastchangelog_animus, initial(lastchangelog_animus))
+	UI_style				= sanitize_inlist(UI_style, list("White", "Midnight","Orange","old"), initial(UI_style))
+	be_special				= sanitize_integer(be_special, 0, 65535, initial(be_special))
+	default_slot			= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
+	toggles					= sanitize_integer(toggles, 0, 65535, initial(toggles))
+	UI_style_color			= sanitize_hexcolor(UI_style_color, initial(UI_style_color))
+	UI_style_alpha			= sanitize_integer(UI_style_alpha, 0, 255, initial(UI_style_alpha))
 
 	return 1
 
@@ -78,12 +80,13 @@
 	S["version"] << savefile_version
 
 	//general preferences
-	S["ooccolor"]			<< ooccolor
-	S["lastchangelog"]		<< lastchangelog
-	S["UI_style"]			<< UI_style
-	S["be_special"]			<< be_special
-	S["default_slot"]		<< default_slot
-	S["toggles"]			<< toggles
+	S["ooccolor"]				<< ooccolor
+	S["lastchangelog"]			<< lastchangelog
+	S["lastchangelog_animus"]	<< lastchangelog_animus
+	S["UI_style"]				<< UI_style
+	S["be_special"]				<< be_special
+	S["default_slot"]			<< default_slot
+	S["toggles"]				<< toggles
 
 	return 1
 

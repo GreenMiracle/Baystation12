@@ -195,7 +195,7 @@
 	layer = 5  					// They were appearing under mobs which is a little weird - Ostaf
 	use_power = 2
 	idle_power_usage = 2
-	active_power_usage = 20
+	active_power_usage = 14
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0

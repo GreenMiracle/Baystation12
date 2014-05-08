@@ -15,7 +15,7 @@
 		feedback_add_details("admin_verb","JA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		alert("Admin jumping disabled")
-
+*/
 /client/proc/jumptoturf(var/turf/T in world)
 	set name = "Jump to Turf"
 	set category = "Admin"
@@ -30,7 +30,7 @@
 	else
 		alert("Admin jumping disabled")
 	return
-*/
+
 /client/proc/jumptomob(var/mob/M in mob_list)
 	set category = "Admin"
 	set name = "Jump to Mob"

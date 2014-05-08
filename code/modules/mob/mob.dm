@@ -422,6 +422,36 @@ var/list/slot_equipment_priority = list( \
 		prefs.save_preferences()
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
 
+/client/verb/changes_animus()
+	set name = "Changelog_Animus"
+	set category = "OOC"
+	getFiles(
+		'html/postcardsmall.jpg',
+		'html/somerights20.png',
+		'html/88x31.png',
+		'html/bug-minus.png',
+		'html/cross-circle.png',
+		'html/hard-hat-exclamation.png',
+		'html/image-minus.png',
+		'html/image-plus.png',
+		'html/music-minus.png',
+		'html/music-plus.png',
+		'html/tick-circle.png',
+		'html/wrench-screwdriver.png',
+		'html/spell-check.png',
+		'html/burn-exclamation.png',
+		'html/chevron.png',
+		'html/chevron-expand.png',
+		'html/changelog.css',
+		'html/changelog.js',
+		'html/changelog_animus.html'
+		)
+	src << browse('html/changelog_animus.html', "window=changes;size=675x650")
+	if(prefs.lastchangelog_animus != changelog_animus_hash)
+		prefs.lastchangelog_animus = changelog_animus_hash
+		prefs.save_preferences()
+		winset(src, "rpane.changelog_animus", "background-color=none;font-style=;")
+
 /mob/verb/observe()
 	set name = "Observe"
 	set category = "OOC"

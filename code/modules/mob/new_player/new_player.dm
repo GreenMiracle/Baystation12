@@ -137,9 +137,9 @@
 			if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 				usr << "\red The round is either not ready, or has already finished..."
 				return
-
+			world << "Late join"
 			if(client.prefs.species != "Human")
-
+				world << client.prefs.species
 				if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
 					src << alert("You are currently not whitelisted to play [client.prefs.species].")
 					return 0
@@ -155,9 +155,10 @@
 				usr << "\blue There is an administrative lock on entering the game!"
 				return
 
-			if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
-				src << alert("You are currently not whitelisted to play [client.prefs.species].")
-				return 0
+			if(client.prefs.species != "Human")
+				if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
+					src << alert("You are currently not whitelisted to play [client.prefs.species].")
+					return 0
 
 			AttemptLateSpawn(href_list["SelectedJob"])
 			return

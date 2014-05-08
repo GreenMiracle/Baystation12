@@ -17,6 +17,7 @@
 	diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
 	diaryofmeanpeople << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
+	changelog_animus_hash = md5('html/changelog_animus.html')
 
 	if(byond_version < RECOMMENDED_VERSION)
 		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND"
@@ -68,7 +69,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
 	diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
-	
+
 	if (T == "ping")
 		var/x = 1
 		for (var/client/C)
@@ -124,7 +125,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/input[] = params2list(T)
 		if(input["key"] != config.comms_password)
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-				
+
 				spawn(50)
 					world_topic_spam_protect_time = world.time
 					return "Bad Key (Throttled)"
@@ -133,9 +134,9 @@ var/world_topic_spam_protect_time = world.timeofday
 			world_topic_spam_protect_ip = addr
 
 			return "Bad Key"
-		
+
 		var/client/C
-		
+
 		for(var/client/K in clients)
 			if(K.ckey == input["adminmsg"])
 				C = K
@@ -152,7 +153,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		C << 'sound/effects/adminhelp.ogg'
 		C << message
 
-		
+
 		for(var/client/A in admins)
 			if(A != C)
 				A << amessage
@@ -179,9 +180,9 @@ var/world_topic_spam_protect_time = world.timeofday
 			return "Bad Key"
 
 		return show_player_info_irc(input["notes"])
-		
 
-		
+
+
 
 
 /world/Reboot(var/reason)
