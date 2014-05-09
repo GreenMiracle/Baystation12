@@ -195,7 +195,7 @@
 	layer = 5  					// They were appearing under mobs which is a little weird - Ostaf
 	use_power = 2
 	idle_power_usage = 2
-	active_power_usage = 14
+	active_power_usage = 16
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
 	var/on = 0					// 1 if on, 0 if off
 	var/on_gs = 0
@@ -243,11 +243,11 @@
 	spawn(2)
 		switch(fitting)
 			if("tube")
-				brightness = 5
+				brightness = 6
 				if(prob(2))
 					broken(1)
 			if("bulb")
-				brightness = 3
+				brightness = 4
 				if(prob(5))
 					broken(1)
 		spawn(1)

@@ -83,3 +83,12 @@
 
 		icon_state = "lattice[dir_sum]"
 		return
+
+/obj/structure/latticedecor
+	desc = "A decorate element."
+	name = "lattice"
+	icon = 'icons/obj/structures.dmi'
+	icon_state = "latticefull"
+	density = 0
+	anchored = 1.0
+	layer = 2.3
