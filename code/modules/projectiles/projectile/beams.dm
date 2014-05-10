@@ -89,6 +89,10 @@ var/list/beam_master = list()
 	flag = "laser"
 	eyeblur = 2
 
+/obj/item/projectile/beam/laser
+	name = "laser"
+	icon_state = "laser"
+	damage = 20
 
 /obj/item/projectile/beam/heavylaser
 	name = "heavy laser"
