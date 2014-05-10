@@ -18,18 +18,8 @@
 	if (src.handle_spam_prevention(msg,MUTE_DEADCHAT))
 		return
 
-	var/stafftype = null
-
-	if (src.holder.rights & R_MOD)
-		stafftype = "MOD"
-
-	if (src.holder.rights & R_MENTOR)
-		stafftype = "MENTOR"
-		
-	if (src.holder.rights & R_ADMIN)
-		stafftype = "ADMIN"
-
-	msg = copytext(sanitize_russian(msg), 1, MAX_MESSAGE_LEN)	log_admin("[key_name(src)] : [msg]")
+	msg = copytext(sanitize_russian(msg), 1, MAX_MESSAGE_LEN)
+	log_admin("[key_name(src)] : [msg]")
 
 	if (!msg)
 		return

@@ -7,7 +7,6 @@ var/list/admin_verbs_default = list(
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
 	/client/proc/check_antagonists,		/*shows all antags*/
-	/client/proc/cmd_mentor_check_new_players
 //	/client/proc/deadchat				/*toggles deadchat on/off*/
 	)
 var/list/admin_verbs_admin = list(
@@ -60,7 +59,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/client/proc/cmd_admin_say,			/*admin-only ooc chat*/
 	/datum/admins/proc/PlayerNotes,
-	/client/proc/cmd_mod_say,
 	/datum/admins/proc/show_player_info,
 	/client/proc/free_slot,			/*frees slot for chosen job*/
 	/client/proc/cmd_admin_change_custom_event,
@@ -233,17 +231,6 @@ var/list/admin_verbs_hideable = list(
 	/proc/release
 	)
 
-var/list/admin_verbs_mentor = list(
-	/client/proc/cmd_admin_pm_context,
-	/client/proc/cmd_admin_pm_panel,
-	/datum/admins/proc/PlayerNotes,
-	/client/proc/admin_ghost,
-	/client/proc/cmd_mod_say,
-	/datum/admins/proc/show_player_info,
-//	/client/proc/dsay,
-	/client/proc/cmd_admin_subtle_message
-)
-
 /client/proc/add_admin_verbs()
 	if(holder)
 		verbs += admin_verbs_default
@@ -259,7 +246,6 @@ var/list/admin_verbs_mentor = list(
 		if(holder.rights & R_REJUVINATE)	verbs += admin_verbs_rejuv
 		if(holder.rights & R_SOUNDS)		verbs += admin_verbs_sounds
 		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
-		if(holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
