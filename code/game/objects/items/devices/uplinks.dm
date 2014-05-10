@@ -209,8 +209,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			feedback_add_details("traitor_uplink_items_bought","ST")
 
 /obj/item/device/uplink/Topic(href, href_list)
-	if (href_list["ref_item"])
-		var/datum/spawn_item/i = locate(href_list["ref_item"])
+	if (href_list["item_ref"])
+		var/datum/spawn_item/i = locate(href_list["item_ref"])
 		if(!i)
 			return 0
 		if(!(i in items))
