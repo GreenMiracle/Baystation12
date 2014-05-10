@@ -40,6 +40,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 				if("everything","host","all")	rights |= R_HOST
 				if("sound","sounds")			rights |= R_SOUNDS
 				if("spawn","create")			rights |= R_SPAWN
+				if("mentor")				rights |= R_MENTOR
 
 		admin_ranks[rank] = rights
 		previous_rights = rights
@@ -50,7 +51,6 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 		msg += "\t[rank] - [admin_ranks[rank]]\n"
 	testing(msg)
 	#endif
-
 
 /hook/startup/proc/loadAdmins()
 	load_admins()

@@ -13,6 +13,15 @@
 	if(src.handle_spam_prevention(msg,MUTE_ADMINHELP))
 		return
 
+	adminhelped = 1 //Determines if they get the message to reply by clicking the name.
+
+	/**src.verbs -= /client/verb/adminhelp
+
+	spawn(1200)
+		src.verbs += /client/verb/adminhelp	// 2 minute cool-down for adminhelps
+		src.verbs += /client/verb/adminhelp	// 2 minute cool-down for adminhelps//Go to hell
+	**/
+
 	//clean the input msg
 	if(!msg)	return
 	msg = sanitize_russian(copytext(msg,1,MAX_MESSAGE_LEN))
@@ -21,7 +30,7 @@
 	if(!mob)	return						//this doesn't happen
 
 	var/ref_mob = "\ref[mob]"
-	msg = "\blue <b><font color='red'>HELP: </font>[key_name(src, 1)] (<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) (<A HREF='?_src_=holder;check_antagonist=1'>CA</A>):</b> [msg]"
+	msg = "\blue <b><font color=red>HELP: </font>[get_options_bar(mob, 2, 1, 1)][ai_found ? " (<A HREF='?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]"
 
 	//send this msg to all admins
 	for(var/client/X in admins)
