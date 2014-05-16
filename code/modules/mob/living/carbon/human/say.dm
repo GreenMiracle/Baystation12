@@ -49,7 +49,7 @@
 		message = trim(copytext(message,positioncut))
 
 
-	message = capitalize(trim_left(message))
+	message = trim_left(message)//capitalize(trim_left(message)) Glory for communism!! ~Intercross21
 
 	if(speech_problem_flag)
 		var/list/handle_r = handle_speech_problems(message)
