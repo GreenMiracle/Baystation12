@@ -531,13 +531,13 @@
 	if(!Adjacent(usr))
 		return
 
-	visible_message("<span class='notice'>[user] trying to clumb on the [src].</span>")
-	if(do_mob(user, get_turf(user), 8))
+	visible_message("<span class='notice'>[usr] trying to clumb on the [src].</span>")
+	if(do_mob(usr, get_turf(usr), 8))
 		if(prob(50))
-			visible_message("<span class='notice'>[user] climbs on the [src].</span>")
+			visible_message("<span class='notice'>[usr] climbs on the [src].</span>")
 			usr.loc = src.loc
 		else
-			visible_message("<span class='warning'>[user] slipped off the edge of the [src].</span>")
+			visible_message("<span class='warning'>[usr] slipped off the edge of the [src].</span>")
 			usr.weakened += 5
 
 /*

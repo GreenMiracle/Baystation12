@@ -95,11 +95,6 @@
 	else if(istype(W,/obj/item/weapon/packageWrap) || istype(W,/obj/item/weapon/weldingtool))
 		return ..(W,user)
 	else if(istype(W, /obj/item/device/multitool) && !src.broken)
-		var/obj/item/device/multitool/multi = W
-		if(multi.is_used)
-			user << "\red This multitool is already in use!"
-			return
-		multi.is_used = 1
 		user << "\red Resetting circuitry(0/6)..."
 		playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
 		var/obj/structure/closet/secure_closet/crat = src
@@ -143,7 +138,6 @@
 									for(var/mob/O in viewers(world.view, user))
 										if(O != user)
 											O.show_message(text("\red <B>[] unlocks [] with a multitool.</B>", user, crat), 1)
-		multi.is_used = 0
 	else
 		togglelock(user)
 
